@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Price from "../components/price/Price";
 import ZoneSelector from "../components/zone-selector/ZoneSelector";
 
@@ -11,6 +12,8 @@ function Prices() {
     { name: "Militær", price: 20, currency: "kr" },
   ] as IPriceType[];
 
+  const [selectedZone, setSelectedZone] = useState(1);
+
   return (
     <>
       <h1>Enkeltbillett</h1>
@@ -18,10 +21,10 @@ function Prices() {
 
       <h3>Pris</h3>
       <p>Velg antall soner</p>
-      <ZoneSelector />
+      <ZoneSelector selectedZone={selectedZone} setSelectedZone={setSelectedZone} />
       <div style={{ paddingTop: 15 }}>
         {priceTypes.map((type) => (
-          <Price {...type} />
+          <Price type={type} zone={selectedZone} />
         ))}
       </div>
     </>

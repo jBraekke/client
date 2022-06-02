@@ -6,7 +6,6 @@ function Header() {
   return (
     <header className="app-header">
       <div className="app-nav">
-        <span style={{ paddingRight: 10 }}>PLANKEBUSS</span>
         <img height={30} src={buss} alt="buss-logo" />
       </div>
     </header>

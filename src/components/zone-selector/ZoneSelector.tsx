@@ -1,37 +1,40 @@
-import { useState } from "react";
 import "./ZoneSelector.css";
 
-function ZoneSelector() {
-  const zones = [1, 2, 3, 4, 5];
+interface IZoneSelector {
+  selectedZone: number;
+  setSelectedZone: (zone: number) => void;
+}
 
-  const [selectedZone, setSelectedZone] = useState(1);
+function ZoneSelector(props: IZoneSelector) {
+  const zones = [1, 2, 3, 4, 5];
+  const { selectedZone, setSelectedZone } = props;
 
   const isSelected = (zone: number) =>
     zone === selectedZone ? "btn-selected" : "";
 
   return (
-      <div className="zone-btns">
-        {zones.map((zone) => {
-          if (zone === 5) {
-            return (
-              <button
-                className={isSelected(zone)}
-                onClick={() => setSelectedZone(zone)}
-              >
-                Alle soner
-              </button>
-            );
-          }
+    <div className="zone-btns">
+      {zones.map((zone) => {
+        if (zone === 5) {
           return (
             <button
               className={isSelected(zone)}
               onClick={() => setSelectedZone(zone)}
             >
-              {zone} sone
+              Alle soner
             </button>
           );
-        })}
-      </div>
+        }
+        return (
+          <button
+            className={isSelected(zone)}
+            onClick={() => setSelectedZone(zone)}
+          >
+            {zone} sone
+          </button>
+        );
+      })}
+    </div>
   );
 }
 
